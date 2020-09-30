@@ -1,3 +1,4 @@
+
 from mycart.login import user_login,user_registration
 from mycart.db_utility import make_connection
 import sqlite3
@@ -183,16 +184,22 @@ class ShoppingCart:
                     final_amount = price
                 print('Total amount to be paid in Rupee',final_amount)
                 print('***************** END *****************')
+
                 input_var = input("Please type 1 to place order")
 
                 if input_var=='1':
-                    for each_records in records:
-                        sql = "UPDATE MYCARTS set status='delivered'  WHERE username='" + uname + "' AND id='" + str(each_records[0]) + "'"
-                        cursor.execute(sql)
-                        connection.commit()
-                    connection.close()
+                    ent_amount = int(input("Please enter amount"))
+                    if final_amount==ent_amount:
 
-                    cart1.saveInvoice(uname,final_amount,inv_date)
+                        for each_records in records:
+                            sql = "UPDATE MYCARTS set status='delivered'  WHERE username='" + uname + "' AND id='" + str(each_records[0]) + "'"
+                            cursor.execute(sql)
+                            connection.commit()
+                        connection.close()
+
+                        cart1.saveInvoice(uname,final_amount,inv_date)
+                    else:
+                        print('Please enter exact  amount')
                 else:
                     print('Wrong input')
             else:
@@ -248,7 +255,7 @@ class HandlingInput:
         pass
 
     def printInstructions(self):
-        print("Type A/a to add your cart items")
+        print("Type A/a to add items in your cart ")
         print("Type C/c to view your cart items")
         print("Type R/r to remove item from your cart")
         print("Type P/p to get the total cart price")
@@ -486,12 +493,15 @@ if __name__ == '__main__':
             continue
     done=False
     while (done == False):
+
         if uname=='admin':
             input_obj.printInstructionsAdmin()
             input_var = input("Please enter your choice")
+
             input_obj.handleInputAdmin(input_var, cart1, uname)
 
         else:
             input_obj.printInstructions()
             input_var = input("Please enter your choice")
+
             input_obj.handleInput(input_var, cart1,uname)
