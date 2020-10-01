@@ -10,6 +10,79 @@ class ShoppingCart:
     def __init__(self):
         self.items = []
 
+    def userCartDetails(self):
+        cursor, connection = make_connection('MYCARTS.db')
+        cursor.execute(
+            "CREATE TABLE IF NOT EXISTS MYCARTS (id INTEGER ,itemName TEXT ,price INTEGER ,quantity INTEGER,username TEXT,status TEXT )")
+        connection.commit()
+
+        try:
+
+            status_temp = False
+            list_item = []
+            while (status_temp == False):
+                input_type = input("Type S/s to view cart of user or ALL/all to view all user carts or X to exit.")
+                if input_type.isdigit():
+                    print('Wrong Input')
+                else:
+
+                    if input_type.upper() == 'S':
+                        input_var = input('Please enter customer user name')
+                        if input_var.isdigit():
+                            print('Please enter valid customer user name')
+                        else:
+
+                            cursor,connection = make_connection('MYCARTS.db')
+                            connection.commit()
+                            records = cursor.execute("SELECT * from MYCARTS WHERE username='" + input_var + "'").fetchall()
+
+
+                    if input_type.upper() == 'ALL':
+
+                        cursor,connection = make_connection('MYCARTS.db')
+                        records=cursor.execute('SELECT * FROM MYCARTS').fetchall()
+                        connection.commit()
+                    connection.close()
+                    if len(records) > 0:
+
+                        print('ItemId', end='   ')
+                        print('Item', end='  ')
+                        print('Price', end='  ')
+                        print('Quantity', end='  ')
+                        print('UserName', end='  ')
+                        print('Status', end='  ')
+                        print('\n')
+
+                        for each_det in records:
+                            print(each_det[0], end='  ')
+                            print(each_det[1], end='  ')
+                            print(each_det[2], end='  ')
+                            print(each_det[3], end='  ')
+                            print(each_det[4], end='  ')
+                            print(each_det[5], end='  ')
+                            print('\n')
+                    else:
+                        print('No items found.')
+
+                    if input_type.upper() == 'X':
+                        status_temp = True
+
+
+
+
+
+        except IOError:
+            pass
+        finally:
+            connection.close()
+
+
+
+
+
+
+
+
     def addToCart(self, item,uname,quantity):
 
 
@@ -42,45 +115,48 @@ class ShoppingCart:
     def removeFromCart(self,uname):
         try:
             print('Your Cart Item')
-            cart1.listCart(uname)
-            print('You can only removed shipped item from cart')
-            input_var = input("Please enter ItemId to remove")
-            quantity_removed = int(input('Please enter quantity'))
+            flag=cart1.listCart(uname)
+            if flag:
+
+                input_var = input("Please enter ItemId to remove")
+                quantity_removed = input('Please enter quantity')
+
+                if quantity_removed.isalpha():
+                    print('Wrong Input')
+
+                if not input_var:
+                    print('Wrong input')
+
+                else:
+                    cursor,connection = make_connection('MYCARTS.db')
+                    status = 'shipped'
+                    records=cursor.execute("SELECT * from MYCARTS WHERE username='" + uname + "' AND id='" + str(input_var) + "' AND status='" + status + "'").fetchone()
+                    if records:
+                        print('You can only removed shipped item from cart')
+                        db_quantity = records[3]
+
+                        if int(quantity_removed)<db_quantity:
+
+                            fquantity = db_quantity-int(quantity_removed)
+                        if int(quantity_removed)>db_quantity:
+                            print('Please enter valid quantity')
+
+                        if int(quantity_removed)==db_quantity:
+                            sql = "DELETE from  MYCARTS  WHERE username='" + uname + "' AND id='" + str(
+                                input_var) + "' AND status='" + status + "'"
+                            cursor.execute(sql)
+                            connection.commit()
+                        if quantity_removed<db_quantity:
+                            sql = "UPDATE   MYCARTS set quantity='"+str(fquantity)+"'  WHERE username='" + uname + "' AND id='" + str(
+                                input_var) + "' AND status='" + status + "'"
+                            cursor.execute(sql)
+                            connection.commit()
 
 
-
-            if not input_var:
-                print('Wrong input')
-
-            else:
-                cursor,connection = make_connection('MYCARTS.db')
-                status = 'shipped'
-                records=cursor.execute("SELECT * from MYCARTS WHERE username='" + uname + "' AND id='" + str(input_var) + "' AND status='" + status + "'").fetchone()
-                if records:
-                    db_quantity = records[3]
-
-                    if quantity_removed<db_quantity:
-
-                        fquantity = db_quantity-quantity_removed
-                    if quantity_removed>db_quantity:
-                        print('Please enter valid quantity')
-
-                    if quantity_removed==db_quantity:
-                        sql = "DELETE from  MYCARTS  WHERE username='" + uname + "' AND id='" + str(
-                            input_var) + "' AND status='" + status + "'"
-                        cursor.execute(sql)
-                        connection.commit()
-                    if quantity_removed<db_quantity:
-                        sql = "UPDATE   MYCARTS set quantity='"+str(fquantity)+"'  WHERE username='" + uname + "' AND id='" + str(
-                            input_var) + "' AND status='" + status + "'"
-                        cursor.execute(sql)
-                        connection.commit()
-
-
-                connection.close()
-                # connection.close()
-                print('Available item in cart')
-                cart1.listCart(uname)
+                    connection.close()
+                    # connection.close()
+                    print('Available item in cart')
+                    flag=cart1.listCart(uname)
 
 
 
@@ -114,6 +190,10 @@ class ShoppingCart:
 
     def show_saved_invoice(self):
         try:
+            cursor, connection = make_connection('INVOICE_DETAILS.db')
+            cursor.execute(
+                "CREATE TABLE IF NOT EXISTS INVOICE_DETAILS (id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT ,amount INTEGER ,invoicedDate TEXT)")
+            connection.commit()
             input_var = input("Please enter customer name to view invoice details or type ALL/all to view all invoices")
 
             if input_var.isdigit():
@@ -188,18 +268,23 @@ class ShoppingCart:
                 input_var = input("Please type 1 to place order")
 
                 if input_var=='1':
-                    ent_amount = int(input("Please enter amount"))
-                    if final_amount==ent_amount:
-
-                        for each_records in records:
-                            sql = "UPDATE MYCARTS set status='delivered'  WHERE username='" + uname + "' AND id='" + str(each_records[0]) + "'"
-                            cursor.execute(sql)
-                            connection.commit()
-                        connection.close()
-
-                        cart1.saveInvoice(uname,final_amount,inv_date)
+                    ent_amount = input("Please enter amount")
+                    if ent_amount.isalpha():
+                        print('Wrong Input')
                     else:
-                        print('Please enter exact  amount')
+
+
+                        if final_amount==int(ent_amount):
+
+                            for each_records in records:
+                                sql = "UPDATE MYCARTS set status='delivered'  WHERE username='" + uname + "' AND id='" + str(each_records[0]) + "'"
+                                cursor.execute(sql)
+                                connection.commit()
+                            connection.close()
+
+                            cart1.saveInvoice(uname,final_amount,inv_date)
+                        else:
+                            print('Please enter exact  amount')
                 else:
                     print('Wrong input')
             else:
@@ -218,13 +303,19 @@ class ShoppingCart:
 
     def listCart(self,uname):
         try:
+            flag = False
+            cursor, connection = make_connection('MYCARTS.db')
+            cursor.execute(
+                "CREATE TABLE IF NOT EXISTS MYCARTS (id INTEGER ,itemName TEXT ,price INTEGER ,quantity INTEGER,username TEXT,status TEXT )")
+            connection.commit()
 
-
-            cursor, coneection = make_connection('MYCARTS.db')
+            cursor, connection = make_connection('MYCARTS.db')
 
             records = cursor.execute("SELECT * from MYCARTS WHERE username='" + uname + "'").fetchall()
-            coneection.commit()
+            connection.commit()
+
             if len(records) > 0:
+                flag=True
                 print('ItemId', end='   ')
                 print('Item', end='  ')
                 print('Price', end='  ')
@@ -243,12 +334,13 @@ class ShoppingCart:
                     print('\n')
             else:
                 print('Your cart is empty please add items in cart')
+            return flag
 
         except:
             import traceback
             traceback.print_exc()
         finally:
-            coneection.close()
+            connection.close()
 
 class HandlingInput:
     def __init__(self):
@@ -266,17 +358,19 @@ class HandlingInput:
         print("Type A to add items in store")
         print("Type L to view your store items")
         print("Type I to view Invoices")
+        print("Type C to view User Carts Details")
         print("Type X to exit")
 
     def handleInputAdmin(self,in_var, cart, uname):
-        char_inputs = ["A", "L", "I", "X"]
 
         if (in_var.upper() == "A"):
             store_obj.CreateStore()
         if (in_var.upper() == "L"):
-            store_obj.listStore()
+           flag= store_obj.listStore()
         if (in_var.upper() == "I"):
             cart.show_saved_invoice()
+        if (in_var.upper() == "C"):
+            cart.userCartDetails()
         if (in_var.upper() == "X"):
             global done
             done = True
@@ -284,44 +378,43 @@ class HandlingInput:
     def handleInput(self,in_var, cart, uname):
         char_inputs = ["C", "R", "P", "X", "L"]
         if (in_var.upper() == "C"):
-            cart.listCart(uname)
+            flag=cart.listCart(uname)
         if (in_var.upper() == "R"):
             cart1.removeFromCart(uname)
             # removeItem(cart,uname)
         if (in_var.upper() == "P"):
-            print("The items in your cart currently cost")
-
             print(cart.priceCart(uname))
         if (in_var.upper() == "L"):
-            store_obj.listStore()
+            flag=store_obj.listStore()
 
         if (in_var.upper() == "X"):
             global done
             done = True
         if in_var.upper() == 'A':
             try:
-                store_obj.listStore()
+                flag = store_obj.listStore()
+                if flag:
 
-                input_var = input("choose an item to buy(type the item number)")
+                    input_var = input("choose an item to buy(type the item number)")
 
-                quantity = input("Please Enter quantity")
-                if not quantity:
-                    quantity = 1
+                    quantity = input("Please Enter quantity")
+                    if not quantity:
+                        quantity = 1
 
-                if quantity.isalpha():
-                    print('Wrong Input')
-                else:
-
-                    cursor, connection = make_connection('productTable.db')
-
-                    records = cursor.execute("SELECT * from productTable WHERE id='" + input_var + "'").fetchone()
-                    connection.commit()
-                    connection.close()
-                    if records:
-
-                        cart.addToCart(records, uname, int(quantity))
+                    if quantity.isalpha():
+                        print('Wrong Input')
                     else:
-                        print('Item not available please wait until new item arrival ')
+
+                        cursor, connection = make_connection('productTable.db')
+
+                        records = cursor.execute("SELECT * from productTable WHERE id='" + input_var + "'").fetchone()
+                        connection.commit()
+                        connection.close()
+                        if records:
+
+                            cart.addToCart(records, uname, int(quantity))
+                        else:
+                            print('Item not available please wait until new item arrival ')
 
 
 
@@ -343,8 +436,15 @@ class StoreItem:
 
     def listStore(self):
         try:
+            flag = False
             input_var = input(
                 "Type category name to view particular category list or type ALL/all to view all category list")
+            connection = sqlite3.connect('productTable.db')
+            cursor = connection.cursor()
+
+            cursor.execute(
+                "CREATE TABLE IF NOT EXISTS productTable (id INTEGER PRIMARY KEY AUTOINCREMENT,category TEXT NOT NULL,itemsName TEXT NOT NULL ,price INTEGER NOT NULL)")
+            connection.commit()
             if input_var.upper() == 'ALL':
 
                 cursor, connection = make_connection('productTable.db')
@@ -362,6 +462,7 @@ class StoreItem:
             connection.close()
 
             if len(records) > 0:
+                flag=True
                 print('ItemId', end='   ')
                 print('Category', end='   ')
                 print('Item', end='  ')
@@ -375,7 +476,8 @@ class StoreItem:
                     print(each_det[3], end='  ')
                     print('\n')
             else:
-                print('No records Found')
+                print('No items found.')
+            return flag
         except:
             import traceback
             traceback.print_exc()
@@ -475,7 +577,10 @@ if __name__ == '__main__':
         query = input('Welcome\nEnter "Log in" if you already have an account,else enter "Register". ')
 
         if query == 'Log in':
-            status,uname= user_login()
+            status,uname,isAdmin= user_login()
+            print(status)
+            print(uname)
+            print(isAdmin)
             if status:
                 print('Welcome'+' '+str(uname))
                 done=True
@@ -494,7 +599,7 @@ if __name__ == '__main__':
     done=False
     while (done == False):
 
-        if uname=='admin':
+        if isAdmin in ['1',1]:
             input_obj.printInstructionsAdmin()
             input_var = input("Please enter your choice")
 
