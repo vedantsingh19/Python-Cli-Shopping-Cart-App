@@ -6,7 +6,7 @@
 .pydevproject
 nohup.out
 *.pid
-.idea/*
+.idea
+*.metadata/
 *.conf
 .DS_Store
-*.db
