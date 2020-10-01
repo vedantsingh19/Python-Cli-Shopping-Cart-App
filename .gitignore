@@ -10,3 +10,4 @@ nohup.out
 *.metadata/
 *.conf
 .DS_Store
+*.db
