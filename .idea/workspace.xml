@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ddfd434f-05ff-4339-865c-07b04c4f8885" name="Default Changelist" comment="" />
+    <list default="true" id="ddfd434f-05ff-4339-865c-07b04c4f8885" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mycart/cartcrud.py" beforeDir="false" afterPath="$PROJECT_DIR$/mycart/cartcrud.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +19,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1i93mdEwO3pEbKSIMuPH7yQavlp" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -22,6 +30,107 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunManager" selected="Python.cartcrud">
+    <configuration name="adminRegistration" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="shoppingApp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/mycart" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mycart/adminRegistration.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="cartcrud" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="shoppingApp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/mycart" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mycart/cartcrud.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for mytests.TDD" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="shoppingApp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/mycart" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;mytests.TDD&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for mytests.TDD.test_list_cart_items_false" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="shoppingApp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/mycart" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;mytests.TDD.test_list_cart_items_false&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for mytests.TDD.test_login_false" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="shoppingApp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/mycart" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;mytests.TDD.test_login_false&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.cartcrud" />
+        <item itemvalue="Python.adminRegistration" />
+        <item itemvalue="Python tests.pytest for mytests.TDD" />
+        <item itemvalue="Python tests.pytest for mytests.TDD.test_list_cart_items_false" />
+        <item itemvalue="Python tests.pytest for mytests.TDD.test_login_false" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -33,5 +142,59 @@
       <updated>1601306140864</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="487" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1601527295796">
+      <screen x="43" y="27" width="1323" height="741" />
+    </state>
+    <state x="487" y="154" width="424" height="484" key="FileChooserDialogImpl/43.27.1323.741@43.27.1323.741" timestamp="1601527295796" />
+    <state width="1300" height="228" key="GridCell.Tab.0.bottom" timestamp="1601527272438">
+      <screen x="43" y="27" width="1323" height="741" />
+    </state>
+    <state width="1300" height="228" key="GridCell.Tab.0.bottom/43.27.1323.741@43.27.1323.741" timestamp="1601527272438" />
+    <state width="1300" height="228" key="GridCell.Tab.0.center" timestamp="1601527272437">
+      <screen x="43" y="27" width="1323" height="741" />
+    </state>
+    <state width="1300" height="228" key="GridCell.Tab.0.center/43.27.1323.741@43.27.1323.741" timestamp="1601527272437" />
+    <state width="1300" height="228" key="GridCell.Tab.0.left" timestamp="1601527272437">
+      <screen x="43" y="27" width="1323" height="741" />
+    </state>
+    <state width="1300" height="228" key="GridCell.Tab.0.left/43.27.1323.741@43.27.1323.741" timestamp="1601527272437" />
+    <state width="1300" height="228" key="GridCell.Tab.0.right" timestamp="1601527272438">
+      <screen x="43" y="27" width="1323" height="741" />
+    </state>
+    <state width="1300" height="228" key="GridCell.Tab.0.right/43.27.1323.741@43.27.1323.741" timestamp="1601527272438" />
+    <state width="1300" height="219" key="GridCell.Tab.1.bottom" timestamp="1601526937197">
+      <screen x="43" y="27" width="1323" height="741" />
+    </state>
+    <state width="1300" height="219" key="GridCell.Tab.1.bottom/43.27.1323.741@43.27.1323.741" timestamp="1601526937197" />
+    <state width="1300" height="219" key="GridCell.Tab.1.center" timestamp="1601526937196">
+      <screen x="43" y="27" width="1323" height="741" />
+    </state>
+    <state width="1300" height="219" key="GridCell.Tab.1.center/43.27.1323.741@43.27.1323.741" timestamp="1601526937196" />
+    <state width="1300" height="219" key="GridCell.Tab.1.left" timestamp="1601526937195">
+      <screen x="43" y="27" width="1323" height="741" />
+    </state>
+    <state width="1300" height="219" key="GridCell.Tab.1.left/43.27.1323.741@43.27.1323.741" timestamp="1601526937195" />
+    <state width="1300" height="219" key="GridCell.Tab.1.right" timestamp="1601526937197">
+      <screen x="43" y="27" width="1323" height="741" />
+    </state>
+    <state width="1300" height="219" key="GridCell.Tab.1.right/43.27.1323.741@43.27.1323.741" timestamp="1601526937197" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/mycart/cartcrud.py</url>
+          <line>343</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/mycart/cartcrud.py</url>
+          <line>115</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

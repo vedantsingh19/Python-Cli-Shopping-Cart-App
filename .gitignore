@@ -1,0 +1,12 @@
+*.pyc
+*.pyo
+*~
+*.sqlite
+.project
+.pydevproject
+nohup.out
+*.pid
+.idea
+*.conf
+.DS_Store
+*.db

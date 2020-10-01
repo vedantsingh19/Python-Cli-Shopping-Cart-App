@@ -56,7 +56,8 @@ def user_registration():
                                            (None, name, email, password,False))
                             connection.commit()
                             print('You are now registered.')
-                            sys.exit()
+                            return True
+                            # sys.exit()
 
                         else:
                             print('Password does not match')

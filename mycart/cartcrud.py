@@ -578,9 +578,6 @@ if __name__ == '__main__':
 
         if query == 'Log in':
             status,uname,isAdmin= user_login()
-            print(status)
-            print(uname)
-            print(isAdmin)
             if status:
                 print('Welcome'+' '+str(uname))
                 done=True
@@ -589,7 +586,7 @@ if __name__ == '__main__':
             status = user_registration()
             if status:
                 print('Please Login....')
-                status,uname = user_login()
+                status,uname,isAdmin = user_login()
                 if status:
                     print('Welcome'+' '+uname)
                     done=True
